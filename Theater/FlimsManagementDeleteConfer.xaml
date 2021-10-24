@@ -1,0 +1,38 @@
+﻿<UserControl x:Class="Theater.FlimsManagementDeleteConfer"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Theater"
+             mc:Ignorable="d" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             Height="200" Width="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <DockPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <materialDesign:PackIcon Kind="Warning" VerticalAlignment="Center" Height="40" Width="40" Foreground="PaleVioletRed"/>
+            <TextBlock FontSize="22" Margin="10 0" TextWrapping="Wrap">
+                删除电影信息后将无法恢复，确认删除吗？
+            </TextBlock>
+        </DockPanel>
+        <DockPanel HorizontalAlignment="Center" VerticalAlignment="Center"
+                   Grid.Row="1">
+            <Button
+                Margin="20 0"
+                Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
+                Content="确认" 
+                Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
+                Click="Button_Click"/>
+            <Button
+                Margin="20 0"
+                Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"
+                Content="取消"
+                Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"/>
+        </DockPanel>
+    </Grid>
+</UserControl>

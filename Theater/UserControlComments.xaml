@@ -1,0 +1,74 @@
+﻿<UserControl x:Class="Theater.UserControlComments"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:local="clr-namespace:Theater"
+             mc:Ignorable="d" 
+             d:DesignHeight="550" d:DesignWidth="750">
+    <!--销售记录-->
+    <materialDesign:DialogHost Identifier="RootDialog">
+        <Grid>
+            <Grid Grid.Column="1" Grid.Row="1">
+                <Grid Grid.Row="2" Margin="15">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <!--搜索栏、添加用户、显示全部-->
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10">
+                        <Border BorderBrush="Gray" BorderThickness="1" CornerRadius="5">
+                            <TextBox x:Name="search_name" 
+                            Margin="5 0 0 0"
+                            materialDesign:HintAssist.Hint="请输入日期(yyyy/MM/dd)或者影院ID"
+                            materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                            materialDesign:TextFieldAssist.HasClearButton="True"
+                            BorderThickness="0"
+                            MinWidth="400"
+                            VerticalAlignment="Center" />
+                        </Border>
+                        <Button Style="{DynamicResource MaterialDesignToolForegroundButton}" VerticalAlignment="Center" 
+                            ToolTip="搜索" Margin="15 0 0 0" Click="Search_Click">
+                            <materialDesign:PackIcon x:Name="search" Kind="Search"/>
+                        </Button>
+                    </StackPanel>
+
+                    <DataGrid x:Name="datagrid_user" Grid.Row="1" Background="Transparent" HeadersVisibility="Column"
+                          AutoGenerateColumns="False" CanUserAddRows="False"
+                          VerticalGridLinesBrush="Transparent" HorizontalGridLinesBrush="WhiteSmoke"
+                          BorderThickness="0" ItemsSource="{Binding }" IsReadOnly="True">
+                        <DataGrid.ColumnHeaderStyle>
+                            <Style TargetType="DataGridColumnHeader">
+                                <Setter Property="BorderThickness" Value="1"/>
+                                <Setter Property="VerticalAlignment" Value="Center"/>
+                                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                <Setter Property="Background" Value="Transparent"/>
+                                <Setter Property="FontWeight" Value="Bold"/>
+                                <Setter Property="Height" Value="35"/>
+                            </Style>
+                        </DataGrid.ColumnHeaderStyle>
+
+                        <DataGrid.RowStyle>
+                            <Style TargetType="DataGridRow">
+                                <Setter Property="BorderThickness" Value="1"/>
+                                <Setter Property="Background" Value="Transparent"/>
+                                <Setter Property="HorizontalAlignment" Value="Center"/>
+                                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                            </Style>
+                        </DataGrid.RowStyle>
+
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="日期" Width="*"  Binding="{Binding Screening_Date}" ElementStyle="{StaticResource ContentStyle}" />
+                            <DataGridTextColumn Header="影厅ID" Width="*" Binding="{Binding Cinema_ID}" ElementStyle="{StaticResource ContentStyle}" />
+                            <DataGridTextColumn Header="电影销售量" Width="*"     Binding="{Binding Ticket_Num}"  ElementStyle="{StaticResource ContentStyle}" />
+                            <DataGridTextColumn Header="电影销售总额" Width="*"    Binding="{Binding Ticket_Sum}" ElementStyle="{StaticResource ContentStyle}"/>
+                            
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </Grid>
+        </Grid>
+    </materialDesign:DialogHost>
+</UserControl>

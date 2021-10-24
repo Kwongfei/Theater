@@ -1,0 +1,130 @@
+﻿<UserControl x:Class="Theater.Tickets_ADD"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Theater"
+             mc:Ignorable="d" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             Height="450" Width="500">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="6*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30">
+            添加影厅
+        </TextBlock>
+        <Grid Grid.Row="1" HorizontalAlignment="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <DockPanel Grid.Row="0" HorizontalAlignment="Center">
+                <materialDesign:PackIcon Kind="Account" VerticalAlignment="Center"/>
+                <TextBox  
+                    Margin="20 0"
+                    Width="300"
+                    materialDesign:HintAssist.Hint="请输入用户ID" 
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Left">
+                </TextBox>
+                <TextBlock Foreground="Red" Width="80" VerticalAlignment="Center" TextWrapping="Wrap"/>
+            </DockPanel>
+            <DockPanel Grid.Row="1">
+                <materialDesign:PackIcon Kind="Film" VerticalAlignment="Center"/>
+                <TextBox 
+                    Margin="20 0"
+                    Width="300"
+                    HorizontalAlignment="Left"
+                    materialDesign:HintAssist.Hint="请输入电影ID"
+                    materialDesign:TextFieldAssist.HasClearButton="True"
+                    VerticalAlignment="Center">
+                </TextBox>
+            </DockPanel>
+            <DockPanel Grid.Row="2" HorizontalAlignment="Left">
+                <materialDesign:PackIcon Kind="Location" VerticalAlignment="Center"/>
+                <ComboBox
+                    IsEnabled="False"
+                    HorizontalAlignment="Left"
+                    Margin="20 0 0 0"
+                    Height="25"
+                    Width="300"
+                    materialDesign:HintAssist.Hint="请选择影院">
+                    <ComboBoxItem Content="绑定现在有的影院" />
+                </ComboBox>
+                <TextBlock Foreground="Red" Width="80" VerticalAlignment="Center"  TextWrapping="Wrap"/>
+            </DockPanel>
+            <DockPanel Grid.Row="3" HorizontalAlignment="Left">
+                <materialDesign:PackIcon Kind="Theater" VerticalAlignment="Center"/>
+                <ComboBox
+                    IsEnabled="False"
+                    HorizontalAlignment="Left"
+                    Margin="20 0 0 0"
+                    Height="25"
+                    Width="300"
+                    materialDesign:HintAssist.Hint="请选择影厅">
+                    <ComboBoxItem Content="绑定现在有的影厅" />
+                </ComboBox>
+                <TextBlock Foreground="Red" Width="80" VerticalAlignment="Center"  TextWrapping="Wrap"/>
+            </DockPanel>
+
+            <DockPanel Grid.Row="4" HorizontalAlignment="Left">
+                <materialDesign:PackIcon Kind="DateRange" VerticalAlignment="Center"/>
+                <DatePicker
+                    IsEnabled="False"
+                    Margin="20 0 0 0"
+                    Width="150"
+                    materialDesign:HintAssist.Hint="请选择放映日期"
+                    Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
+                <TextBlock Foreground="Red" Width="80" VerticalAlignment="Center"  TextWrapping="Wrap"/>
+            </DockPanel>
+            <DockPanel Grid.Row="5" HorizontalAlignment="Left">
+                <materialDesign:PackIcon Kind="Clock" VerticalAlignment="Center"/>
+                <materialDesign:TimePicker
+                    IsEnabled="False"
+                    Margin="20 0 0 0"
+                    Is24Hours="True"
+                    Width="150"
+                    materialDesign:HintAssist.Hint="请选择放映时间" />
+                <TextBlock Foreground="Red" Width="80" VerticalAlignment="Center"  TextWrapping="Wrap"/>
+            </DockPanel>
+            <DockPanel Grid.Row="6" HorizontalAlignment="Left">
+                <materialDesign:PackIcon Kind="LoveSeat" VerticalAlignment="Center"/>
+                <ComboBox
+                    IsEnabled="False"
+                    Margin="20 0 0 0"
+                    Width="150"
+                    materialDesign:HintAssist.Hint="请选择座位号"/>
+                <TextBlock Foreground="Red" Width="80" VerticalAlignment="Center"  TextWrapping="Wrap"/>
+            </DockPanel>
+        </Grid>
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button 
+                Grid.Row="1" 
+                IsDefault="True" 
+                Style="{DynamicResource MaterialDesignFlatButton}" 
+                HorizontalAlignment="Right" 
+                Margin="16 0" 
+                Foreground="Black">
+                添加
+            </Button>
+            <Button 
+                Grid.Row="1" IsDefault="True" 
+                Style="{DynamicResource MaterialDesignFlatButton}" 
+                HorizontalAlignment="Right" 
+                Margin="16 0" 
+                Foreground="Black"
+                Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}">
+                取消
+            </Button>
+        </StackPanel>
+    </Grid>
+</UserControl>

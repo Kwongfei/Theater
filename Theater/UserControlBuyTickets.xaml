@@ -1,0 +1,121 @@
+﻿<UserControl x:Class="Theater.UserControlBuyTickets"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:local="clr-namespace:Theater"
+             mc:Ignorable="d"
+             d:DesignHeight ="600"
+             Height="Auto" Width="Auto">
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/Image/background_5.jpg"/>
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="80"/>
+        </Grid.RowDefinitions>
+        <!--标题栏-->
+        <Button Width="200" Height="50"
+                Style="{StaticResource MaterialDesignRaisedButton}"
+                materialDesign:ButtonProgressAssist.Value="-1"
+                materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
+                materialDesign:ButtonProgressAssist.IsIndeterminate="True"
+                Content="请选定您的座位" FontSize="22" FontWeight="Bold" 
+                Margin="2,0"/>
+        <Border BorderBrush="Black" CornerRadius="5" BorderThickness="5" Grid.Row="1"
+                Width="100" Height="50">
+            <TextBlock Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" 
+                       FontSize="22" FontWeight="Bold">
+            屏幕
+            </TextBlock>
+        </Border>
+        
+        <!--确认栏-->
+        <DockPanel Grid.Row="3" HorizontalAlignment="Center">
+            <Button x:Name="BuySuccessfully" Click="BuySuccessfully_Click"
+                    Style="{StaticResource MaterialDesignRaisedLightButton}"
+                    FontSize="20" FontWeight="Bold"
+                    Background="#FF13B5FF"
+                    Margin="10 0" Content="确定" Width="100" Height="40"/>
+            <Button x:Name="Cancel" Click="Cancel_Click"
+                    Margin="10 0" Content="取消" Background="#f8598a"
+                    FontSize="20" FontWeight="Bold"
+                    Style="{StaticResource MaterialDesignRaisedLightButton}"
+                    Width="100" Height="40"/>
+        </DockPanel>
+        
+        <!--座位表-->
+        <Border Grid.Row="2" BorderThickness="15">
+            <UniformGrid Rows="4" Columns="4" Width="340">
+                <ToggleButton x:Name="Seat1" Height="50" Width="50" Foreground="Black"
+                              Style="{StaticResource MaterialDesignActionLightToggleButton}">
+                    <materialDesign:PackIcon Kind="SofaSingle" />
+                </ToggleButton>
+                <ToggleButton x:Name="Seat2" Height="50" Width="50" Foreground="Black"
+                              Style="{StaticResource MaterialDesignActionLightToggleButton}" IsEnabled="False">
+                    <materialDesign:PackIcon Kind="SofaSingle" />
+                </ToggleButton>
+                <ToggleButton x:Name="Seat3" Height="50" Width="50" Foreground="Black"
+                              Style="{StaticResource MaterialDesignActionLightToggleButton}">
+                    <materialDesign:PackIcon Kind="SofaSingle" />
+                </ToggleButton>
+                <ToggleButton x:Name="Seat4" Height="50" Width="50" Foreground="Black"
+                              Style="{StaticResource MaterialDesignActionLightToggleButton}">
+                    <materialDesign:PackIcon Kind="SofaSingle" />
+                </ToggleButton>
+                <ToggleButton x:Name="Seat5" Height="50" Width="50" Foreground="Black"
+                              Style="{StaticResource MaterialDesignActionLightToggleButton}">
+                    <materialDesign:PackIcon Kind="SofaSingle" />
+                </ToggleButton>
+                <ToggleButton x:Name="Seat6" Height="50" Width="50" Foreground="Black"
+                              Style="{StaticResource MaterialDesignActionLightToggleButton}">
+                    <materialDesign:PackIcon Kind="SofaSingle" />
+                </ToggleButton>
+                <ToggleButton x:Name="Seat7" Height="50" Width="50" Foreground="Black"
+                              Style="{StaticResource MaterialDesignActionLightToggleButton}">
+                    <materialDesign:PackIcon Kind="SofaSingle" />
+                </ToggleButton>
+                <ToggleButton x:Name="Seat8" Height="50" Width="50" Foreground="Black"
+                              Style="{StaticResource MaterialDesignActionLightToggleButton}">
+                    <materialDesign:PackIcon Kind="SofaSingle" />
+                </ToggleButton>
+                <ToggleButton x:Name="Seat9" Height="50" Width="50" Foreground="Black"
+                              Style="{StaticResource MaterialDesignActionLightToggleButton}">
+                    <materialDesign:PackIcon Kind="SofaSingle" />
+                </ToggleButton>
+                <ToggleButton x:Name="Seat10" Height="50" Width="50" Foreground="Black"
+                              Style="{StaticResource MaterialDesignActionLightToggleButton}">
+                    <materialDesign:PackIcon Kind="SofaSingle" />
+                </ToggleButton>
+                <ToggleButton x:Name="Seat11" Height="50" Width="50" Foreground="Black"
+                              Style="{StaticResource MaterialDesignActionLightToggleButton}">
+                    <materialDesign:PackIcon Kind="SofaSingle" />
+                </ToggleButton>
+                <ToggleButton x:Name="Seat12" Height="50" Width="50" Foreground="Black"
+                              Style="{StaticResource MaterialDesignActionLightToggleButton}">
+                    <materialDesign:PackIcon Kind="SofaSingle" />
+                </ToggleButton>
+                <ToggleButton x:Name="Seat13" Height="50" Width="50" Foreground="Black"
+                              Style="{StaticResource MaterialDesignActionLightToggleButton}">
+                    <materialDesign:PackIcon Kind="SofaSingle" />
+                </ToggleButton>
+                <ToggleButton x:Name="Seat14" Height="50" Width="50" Foreground="Black"
+                              Style="{StaticResource MaterialDesignActionLightToggleButton}">
+                    <materialDesign:PackIcon Kind="SofaSingle" />
+                </ToggleButton>
+                <ToggleButton x:Name="Seat15" Height="50" Width="50" Foreground="Black"
+                              Style="{StaticResource MaterialDesignActionLightToggleButton}">
+                    <materialDesign:PackIcon Kind="SofaSingle" />
+                </ToggleButton>
+                <ToggleButton x:Name="Seat16" Height="50" Width="50"  Foreground="Black"
+                              Style="{StaticResource MaterialDesignActionLightToggleButton}">
+                    <materialDesign:PackIcon Kind="SofaSingle" />
+                </ToggleButton>
+            </UniformGrid>
+        </Border>
+    </Grid>
+</UserControl>

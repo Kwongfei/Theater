@@ -1,0 +1,96 @@
+﻿<UserControl x:Class="Theater.UserControlTickets"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:local="clr-namespace:Theater"
+             mc:Ignorable="d" 
+             d:DesignHeight="550" d:DesignWidth="750">
+    <!--订单管理-->
+    <materialDesign:DialogHost Identifier="RootDialog">
+        <Grid>
+            <Grid Grid.Column="1" Grid.Row="1">
+                <Grid Grid.Row="2" Margin="15">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <!--搜索栏、添加用户、显示全部-->
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10">
+                        <Border BorderBrush="Gray" BorderThickness="1" CornerRadius="5">
+                            <TextBox x:Name="search_name" 
+                            Margin="5 0 0 0"
+                            materialDesign:HintAssist.Hint="请输入订单Id,用户Id,放映Id或者座位号"
+                            materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                            materialDesign:TextFieldAssist.HasClearButton="True"
+                            BorderThickness="0"
+                            MinWidth="400"
+                            VerticalAlignment="Center" />
+                        </Border>
+                        <Button Style="{DynamicResource MaterialDesignToolForegroundButton}" VerticalAlignment="Center" 
+                            ToolTip="搜索" Margin="15 0 0 0" Click="SearchTicket_Click">
+                            <materialDesign:PackIcon x:Name="search" Kind="Search"/>
+                        </Button>
+                        <Button x:Name="AdminAddAccount"
+                        Style="{DynamicResource MaterialDesignToolForegroundButton}" 
+                        Margin="10 0 0 0"
+                        ToolTip="添加订单"
+                       >
+                            <materialDesign:PackIcon Kind="Add" />
+                        </Button>
+                        <Button x:Name="showall" Style="{DynamicResource MaterialDesignToolForegroundButton}" 
+                            Margin="10 0 0 0" ToolTip="显示全部" Click="showall_Click">
+                            <materialDesign:PackIcon Kind="Send" />
+                        </Button>
+                    </StackPanel>
+
+                    <DataGrid x:Name="datagrid_Ticket" Grid.Row="1" Background="Transparent" HeadersVisibility="Column"
+                          AutoGenerateColumns="False" CanUserAddRows="False"
+                          VerticalGridLinesBrush="Transparent" HorizontalGridLinesBrush="WhiteSmoke"
+                          BorderThickness="0" ItemsSource="{Binding }" IsReadOnly="True">
+                        <DataGrid.ColumnHeaderStyle>
+                            <Style TargetType="DataGridColumnHeader">
+                                <Setter Property="BorderThickness" Value="0"/>
+                                <Setter Property="VerticalAlignment" Value="Center"/>
+                                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                <Setter Property="Background" Value="Transparent"/>
+                                <Setter Property="FontWeight" Value="Bold"/>
+                                <Setter Property="Height" Value="35"/>
+                            </Style>
+                        </DataGrid.ColumnHeaderStyle>
+
+                        <DataGrid.RowStyle>
+                            <Style TargetType="DataGridRow">
+                                <Setter Property="BorderThickness" Value="1"/>
+                                <Setter Property="Background" Value="Transparent"/>
+                                <Setter Property="HorizontalAlignment" Value="Center"/>
+                                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                            </Style>
+                        </DataGrid.RowStyle>
+
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="订单ID" Width="*"  Binding="{Binding Ticket_ID}" ElementStyle="{StaticResource ContentStyle}" />
+                            <DataGridTextColumn Header="用户ID" Width="*" Binding="{Binding Ticket_userId}" ElementStyle="{StaticResource ContentStyle}"/>
+                            <DataGridTextColumn Header="放映ID" Width="*"     Binding="{Binding Ticket_ScreeningId}" ElementStyle="{StaticResource ContentStyle}" />
+                            <DataGridTextColumn Header="座位号" Width="*"    Binding="{Binding Ticket_SeatNo}" ElementStyle="{StaticResource ContentStyle}" />
+
+                            <DataGridTemplateColumn Header="操作" Width="*">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                            <Button Style="{StaticResource MaterialDesignRaisedLightButton}"
+                                                ToolTip="删除" Content="删除" Background="#ff5d8d" Click="TicketDelete_Click" Width="80"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </Grid>
+        </Grid>
+    </materialDesign:DialogHost>
+    
+</UserControl>

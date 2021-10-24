@@ -1,0 +1,32 @@
+﻿<UserControl x:Class="Theater.UserControlPayment"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:local="clr-namespace:Theater.Properties"
+             mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="450">
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/Image/background_5.jpg"/>
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Button Width="200" Height="50"
+                Style="{StaticResource MaterialDesignRaisedButton}"
+                materialDesign:ButtonProgressAssist.Value="-1"
+                materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
+                materialDesign:ButtonProgressAssist.IsIndeterminate="True"
+                Content="请扫码支付" FontSize="22" FontWeight="Bold" 
+                Margin="2,0"/>
+        <Image Source="/Image/Payment_2.jpg" Grid.Row="1" Height="270"/>
+        <Button x:Name="btn1" HorizontalAlignment="Center"
+                FontSize="20" FontWeight="Bold"
+                Margin="10 0" Content="确定" Width="150" Height="50"
+                Click="Btn1_Click" Grid.Row="2"/>
+    </Grid>
+</UserControl>

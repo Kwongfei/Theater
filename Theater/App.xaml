@@ -1,0 +1,132 @@
+﻿<Application x:Class="Theater.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:local="clr-namespace:Theater"
+             StartupUri="LoginWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.Blue.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Indigo.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <!--电影列表的模板-->
+            <DataTemplate x:Key="FilmListTemplate">
+                <Border  Height="100" Background="Transparent" HorizontalAlignment="Stretch" BorderThickness="0">
+                    <Grid Width="Auto" MinWidth="350" HorizontalAlignment="Stretch">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="70"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Image Source="{Binding Movie_Image}" Stretch="Fill">
+                            <Image.Clip>
+                                <RectangleGeometry RadiusX="5" RadiusY="5" Rect="0,0,70,100"/>
+                            </Image.Clip>
+                        </Image>
+                        <Grid Grid.Column="1" Margin="10 0 0 0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition Height="2*"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock FontSize="14" FontWeight="Bold" Text="{Binding Movie_Name}" Margin="0 0 0 4"/>
+                            <StackPanel Orientation="Horizontal" Grid.Row="1">
+                                <TextBlock Text="类型："/>
+                                <TextBlock FontSize="12" Text="{Binding Movie_Type}"
+                                       Width="180" HorizontalAlignment="Left"
+                                       TextWrapping="Wrap"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Grid.Row="2">
+                                <TextBlock Text="导演："/>
+                                <TextBlock FontSize="12" Text="{Binding Movie_Director}"
+                                       Width="180" HorizontalAlignment="Left"
+                                       TextWrapping="Wrap"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Grid.Row="3">
+                                <TextBlock Text="主演："/>
+                                <TextBlock FontSize="12" Text="{Binding Movie_Actors}"
+                                       Width="180" HorizontalAlignment="Left"
+                                       TextWrapping="Wrap"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Grid.Row="4">
+                                <TextBlock Text="上映时间："/>
+                                <TextBlock FontSize="12" Foreground="Gray" Text="{Binding Movie_RelDate}" />
+                            </StackPanel>
+                        </Grid>
+                        <Button Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Left"
+                                Style="{StaticResource MaterialDesignRaisedButton}"
+                                materialDesign:ButtonProgressAssist.Value="-1"
+                                materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
+                                materialDesign:ButtonProgressAssist.IsIndeterminate="True"
+                                Content="购票" Margin="10 0 0 0"/>
+                    </Grid>
+                </Border>
+            </DataTemplate>
+            <!--电影播放场次模板-->
+            <DataTemplate x:Key="FilmsTimeListTemplate">
+                <Border  Height="110" Background="Transparent" HorizontalAlignment="Stretch" BorderThickness="0">
+                    <Grid Width="Auto" MinWidth="380" HorizontalAlignment="Stretch">
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="3*"/>
+                                <ColumnDefinition Width="1*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid Margin="0 0 10 0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <TextBlock FontSize="24" FontWeight="Bold" Text="{Binding Cinema_Name}"/>
+                                <DockPanel Grid.Row="1" Margin="0 5 0 0">
+                                    <materialDesign:PackIcon Kind="MapMarker" />
+                                    <TextBlock Text="{Binding Cinema_address}" TextWrapping="Wrap" Height="Auto"/>
+                                </DockPanel>
+                                <DockPanel Grid.Row="2">
+                                    <materialDesign:PackIcon Kind="Theater" Margin="0 0 3 0" />
+                                    <TextBlock Text="{Binding Hall_Name}" FontWeight="Black"/>
+                                    <materialDesign:PackIcon Kind="ClockTimeFiveOutline"  DockPanel.Dock="Left" Margin="-7 0 2 0"/>
+                                    <TextBlock Text="{Binding Screening_Date,StringFormat='yyyy/MM/dd' }" DockPanel.Dock="Left" FontWeight="Black" />
+                                </DockPanel>
+                            </Grid>
+                            <StackPanel Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                    Margin="10 0">
+                                <TextBlock Text="{Binding Screening_Price }" HorizontalAlignment="Center"
+                                       FontSize="24" Margin="0 0 0 5" 
+                                       Foreground="#e5004b" FontWeight="Bold"/>
+                                <!--这个按钮是为了装饰，实际上跳转功能在ListBox的SelectionChanged里面实现了-->
+                                <Button Style="{StaticResource MaterialDesignRaisedButton}"
+                                    materialDesign:ButtonProgressAssist.Value="-1"
+                                    materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
+                                    materialDesign:ButtonProgressAssist.IsIndeterminate="True"
+                                    Content="购票"/>
+                            </StackPanel>
+                        </Grid>
+                        <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="0 5 0 0">
+                            <TextBlock Text="开场时间："/>
+                            <TextBlock Text="{Binding Screening_StartTime}"/>
+                            <TextBlock Text="结束时间：" Margin="30 0 0 0"/>
+                            <TextBlock Text="{Binding Screening_EndTime}"/>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+            </DataTemplate>
+            <Style x:Key="ContentStyle"  
+               TargetType="{x:Type TextBlock}">
+                <Setter Property="HorizontalAlignment"  
+                    Value="Center" />
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="TextWrapping" Value="Wrap"/>
+            </Style>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

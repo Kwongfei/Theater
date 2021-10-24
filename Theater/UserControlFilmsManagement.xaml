@@ -1,0 +1,105 @@
+﻿<UserControl x:Class="Theater.UserControlFilmsManagement"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:local="clr-namespace:Theater"
+             mc:Ignorable="d" 
+             d:DesignHeight="550" d:DesignWidth="750">
+    <!--电影管理-->
+    <materialDesign:DialogHost Identifier="RootDialog">
+        <Grid>
+            <Grid Grid.Column="1" Grid.Row="1">
+                <Grid Grid.Row="2" Margin="15">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <!--搜索栏、添加电影、显示全部-->
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10">
+                        <Border BorderBrush="Gray" BorderThickness="1" CornerRadius="5">
+                            <TextBox x:Name="search_name" 
+                            Margin="5 0 0 0"
+                            materialDesign:HintAssist.Hint="请输入电影名，导演，主演，类别或上映日期（MM-dd）"
+                            materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                            materialDesign:TextFieldAssist.HasClearButton="True"
+                            BorderThickness="0"
+                            MinWidth="400"
+                            VerticalAlignment="Center" />
+                        </Border>
+                        <Button x:Name="SearchFilm" Style="{DynamicResource MaterialDesignToolForegroundButton}" VerticalAlignment="Center" 
+                            ToolTip="搜索" Margin="15 0 0 0" Click="SearchFilm_Click">
+                            <materialDesign:PackIcon  Kind="Search"/>
+                        </Button>
+                        <Button x:Name="AdminAddAccount"
+                        Style="{DynamicResource MaterialDesignToolForegroundButton}" 
+                        Margin="10 0 0 0"
+                        Click="AdminAddFilm_Click"
+                        ToolTip="添加电影"
+                        >
+                            <materialDesign:PackIcon Kind="Add" />
+                        </Button>
+                        <Button x:Name="showall" Style="{DynamicResource MaterialDesignToolForegroundButton}"  
+                            Margin="10 0 0 0" ToolTip="显示全部" Click="showall_Click">
+                            <materialDesign:PackIcon x:Name="FilmShowAll" Kind="Send" />
+                        </Button>
+                    </StackPanel>
+
+                    <!--数据显示-->
+                    <DataGrid x:Name="datagrid_Film" Grid.Row="1" Background="Transparent" HeadersVisibility="Column"
+                          AutoGenerateColumns="False" CanUserAddRows="False"
+                          VerticalGridLinesBrush="Transparent" HorizontalGridLinesBrush="WhiteSmoke"
+                          BorderThickness="0" ItemsSource="{Binding }" IsReadOnly="True">
+                        <DataGrid.ColumnHeaderStyle>
+                            <Style TargetType="DataGridColumnHeader">
+                                <Setter Property="BorderThickness" Value="0"/>
+                                <Setter Property="VerticalAlignment" Value="Center"/>
+                                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                <Setter Property="Background" Value="Transparent"/>
+                                <Setter Property="FontWeight" Value="Bold"/>
+                                <Setter Property="Height" Value="35"/>
+                            </Style>
+                        </DataGrid.ColumnHeaderStyle>
+
+                        <DataGrid.RowStyle>
+                            <Style TargetType="DataGridRow">
+                                <Setter Property="BorderThickness" Value="1"/>
+                                <Setter Property="Background" Value="Transparent"/>
+                                <Setter Property="HorizontalAlignment" Value="Center"/>
+                                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                            </Style>
+                        </DataGrid.RowStyle>
+
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="电影名" Width="*"  Binding="{Binding movie_Name}" ElementStyle="{StaticResource ContentStyle}" />
+                            <DataGridTextColumn Header="导演" Width="*" Binding="{Binding movie_Director}" ElementStyle="{StaticResource ContentStyle}"/>
+                            <DataGridTextColumn Header="主演" Width="*"     Binding="{Binding movie_Actors}" ElementStyle="{StaticResource ContentStyle}" />
+                            <DataGridTextColumn Header="类型" Width="*"    Binding="{Binding movie_Type}" ElementStyle="{StaticResource ContentStyle}" />
+                            <DataGridTextColumn Header="上映时间" Width="Auto"    Binding="{Binding movie_RelDate,StringFormat='yyyy/MM/dd'}" ElementStyle="{StaticResource ContentStyle}" />
+                            <DataGridTextColumn Header="时长(min)" Width="*"    Binding="{Binding movie_time}" ElementStyle="{StaticResource ContentStyle}" />
+                            <DataGridTextColumn Header="电影简介" Width="4*"    Binding="{Binding movie_Intro}" ElementStyle="{StaticResource ContentStyle}" />
+
+                            <DataGridTemplateColumn Header="操作" Width="230">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                            <Button Style="{StaticResource MaterialDesignOutlinedButton}" ToolTip="编辑" 
+                                                    Margin="10 0" Content="编辑" Click="AdminEditFilm_Click" Width="80"/>
+                                            <Button Style="{StaticResource MaterialDesignRaisedLightButton}"
+                                                    Margin="10 0" ToolTip="删除" Content="删除" Background="#ff5d8d" 
+                                                    Click="FilmDelete_Click" Width="80"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </Grid>
+
+        </Grid>
+    </materialDesign:DialogHost>
+
+</UserControl>

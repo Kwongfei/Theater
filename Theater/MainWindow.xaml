@@ -1,0 +1,58 @@
+﻿<Window x:Class="Theater.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:Theater"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="770" Width="430">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+
+        <Grid>
+            <Grid x:Name="GridPrincipal" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+        </Grid>
+        
+        <!--下面的菜单栏-->
+        <UniformGrid Columns="3" Grid.Row="1" Background="LightBlue">
+            <Button
+                x:Name="HomePage"
+              Style="{StaticResource MaterialDesignIconButton}"
+              ToolTip="主页"
+                Click="HomePage_Click">
+                <materialDesign:PackIcon Kind="HomeMinusOutline" />
+            </Button>
+            <Button
+                x:Name="FilmsListPage"
+              Style="{StaticResource MaterialDesignIconButton}"
+              ToolTip="电影列表"
+                Click="FilmsListPage_Click">
+                <materialDesign:PackIcon Kind="Theater" />
+            </Button>
+            <Button
+                x:Name="AccountPage"
+              Style="{StaticResource MaterialDesignIconButton}"
+              ToolTip="我的账户"
+                Click="AccountPage_Click">
+                <materialDesign:PackIcon Kind="AccountCircle" />
+            </Button>
+            <!--<ListBox Style="{StaticResource MaterialDesignChoiceChipPrimaryListBox}" SelectionChanged="ListBoxMenu_SelectionChanged"
+                    x:Name="ListBoxMenu" VerticalAlignment="Center"  >
+                <ListBoxItem IsSelected="True" Margin="10 0">
+                    <materialDesign:PackIcon Kind="HomeMinusOutline" />
+                </ListBoxItem>
+                <ListBoxItem Margin="20 0">
+                    <materialDesign:PackIcon Kind="Theater" />
+                </ListBoxItem>
+                <ListBoxItem Margin="10 0">
+                    <materialDesign:PackIcon Kind="AccountCircle"/>
+                </ListBoxItem>
+            </ListBox>-->
+        </UniformGrid>
+    </Grid>
+</Window>
